@@ -3,9 +3,11 @@ import java.util.Map;
 
 public class Purse {
 	//Key is type of denomination, int is number of those denominations
-	private Map<Denomination, Integer> cash;
+	private final Map<Denomination, Integer> cash;
+	//Array of all denomination types
 	private final Denomination[] denominations = new Denomination[9];
 
+	//initialize the Hashmap
 	public Purse() {
 		cash = new HashMap<Denomination, Integer>();
 
@@ -24,14 +26,15 @@ public class Purse {
 		}
 	}
 
+	//create an entry
 	public void create(Denomination d, int amt) {
 		//add an @amt of a @d to @cash
 		cash.put(d, amt);
 	}
 
+	//section out money into appropriate categories
 	public void add(double amt) {
 		while (amt > 0.01) {
-			System.out.println(amt);
 			if (amt >= 50) {
 				cash.put(denominations[8], cash.remove(denominations[8]) + 1);
 				amt -= 50;
@@ -46,7 +49,7 @@ public class Purse {
 				amt -= 5;
 			} else if (amt >= 1) {
 				cash.put(denominations[4], cash.remove(denominations[4]) + 1);
-				 amt -= 1;
+				amt -= 1;
 			} else if (amt >= 0.25) {
 				cash.put(denominations[3], cash.remove(denominations[3]) + 1);
 				amt -= 0.25;
@@ -64,8 +67,8 @@ public class Purse {
 
 	}
 
+	//return the amount of money removed from purse
 	public double remove(Denomination d) {
-		//return the amount of money removed from purse
 		return d.amt() * cash.remove(d);
 	}
 
@@ -80,13 +83,14 @@ public class Purse {
 		return sum;
 	}
 
+	//return a string listing all type of denominations and the amount they are used
 	public String toString() {
 		String ret = "";
 
 		for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
-			ret += entry.getKey().name() + ": " + entry.getValue()+ "\n";
+			ret += entry.getKey().name() + ": " + entry.getValue() + "\n";
 		}
 
-		return ret;
+		return ret.substring(0, ret.length() - 1);
 	}
 }
