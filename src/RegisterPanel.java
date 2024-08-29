@@ -11,6 +11,7 @@ public class RegisterPanel extends JPanel {
 	ChangePanel pursePanel;
 
 	RegisterPanel() {
+		//create panels
 		register = new Register();
 		pursePanel = new ChangePanel();
 		inputPanel = new JPanel();
@@ -39,6 +40,7 @@ public class RegisterPanel extends JPanel {
 		pursePanel.setBackground(Color.BLUE);
 		pursePanel.setPreferredSize(new Dimension(400, 200));
 
+		//add panels to register panel
 		this.add(inputPanel);
 		this.add(pursePanel);
 	}

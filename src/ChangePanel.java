@@ -5,6 +5,7 @@ public class ChangePanel extends JPanel {
 	private Purse purse;
 	private JTextArea changeField;
 
+	//initialize the change field
 	ChangePanel() {
 		changeField = new JTextArea(9, 30);
 		changeField.setEditable(false);
