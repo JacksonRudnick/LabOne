@@ -1,3 +1,5 @@
+//This class is used for only console output
+
 public class Main {
 	public static void main(String[] args) {
 		//Create register

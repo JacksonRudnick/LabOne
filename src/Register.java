@@ -4,7 +4,10 @@ public class Register {
 
 		//cycle through possible denominations
 		while (amt > 0.01) {
-			if (amt >= 50) {
+			if (amt >= 100) {
+				purse.add(purse.denominations[9], 1);
+				amt -= 100;
+			} else if (amt >= 50) {
 				purse.add(purse.denominations[8], 1);
 				amt -= 50;
 			} else if (amt >= 20) {
