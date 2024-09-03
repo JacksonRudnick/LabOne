@@ -1,8 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.System.exit;
-
 public class Purse {
 	//Key is type of denomination, int is number of those denominations
 	private final Map<Denomination, Integer> cash;
