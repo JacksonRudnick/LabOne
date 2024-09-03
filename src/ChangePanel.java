@@ -9,14 +9,10 @@ import java.util.Objects;
 import static java.lang.System.exit;
 
 public class ChangePanel extends JPanel {
-	private Purse purse;
-
 	//method to display coins and bills
 	public void setPurse(Purse p) {
-		purse = p;
-
 		//loop through possible denominations
-		for (Map.Entry<Denomination, Integer> entry : purse.getCash().entrySet()) {
+		for (Map.Entry<Denomination, Integer> entry : p.getCash().entrySet()) {
 			//display image for number of each type of denomination
 			for (int i = 0; i < entry.getValue(); i++) {
 				//start with image

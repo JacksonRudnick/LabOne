@@ -9,7 +9,7 @@ public class Purse {
 
 	public Purse() {
 		//initialize the Hashmap
-		cash = new HashMap<Denomination, Integer>();
+		cash = new HashMap<>();
 
 		denominations[0] = new Denomination("Penny", 0.01, "coin", "penny.png");
 		denominations[1] = new Denomination("Nickel", 0.05, "coin", "nickel.png");
@@ -36,22 +36,6 @@ public class Purse {
 		}
 
 		cash.put(d, oldAmt+amt);
-	}
-
-	//return the amount of money removed from purse
-	public double remove(Denomination d) {
-		return d.amt() * cash.remove(d);
-	}
-
-	public double getValue() {
-		double sum = 0;
-
-		//iterate through map to total sum of denominations in purse
-		for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
-			sum += entry.getKey().amt() * entry.getValue();
-		}
-
-		return sum;
 	}
 
 	//return a string listing all type of denominations and the amount they are used
