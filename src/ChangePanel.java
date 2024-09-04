@@ -1,23 +1,48 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
+
+import static java.lang.System.exit;
 
 public class ChangePanel extends JPanel {
-	private Purse purse;
-	private JTextArea changeField;
-
-	//initialize the change field
-	ChangePanel() {
-		changeField = new JTextArea(9, 30);
-		changeField.setEditable(false);
-		this.add(changeField);
-	}
-
-	public void displayException(String err) {
-		changeField.setText(err + "\nPlease make sure what you have entered is a double.");
-	}
-
+	//method to display coins and bills
 	public void setPurse(Purse p) {
-		purse = p;
-		changeField.setText(purse.toString());
+		//loop through possible denominations
+		for (Map.Entry<Denomination, Integer> entry : p.getCash().entrySet()) {
+			//display image for number of each type of denomination
+			for (int i = 0; i < entry.getValue(); i++) {
+				//start with image
+				Image img = null;
+
+				try {
+					//read image
+					img = ImageIO.read(new File("images/" + entry.getKey().img()));
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+					exit(-1);
+				}
+
+				//resize image
+				if (Objects.equals(entry.getKey().form(), "bill")) {
+					img = img.getScaledInstance(120, 60, Image.SCALE_SMOOTH);
+				} else {
+					img = img.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+				}
+
+				//convert image into a label
+				JLabel picLabel = new JLabel(new ImageIcon(img));
+
+				this.add(picLabel);
+			}
+		}
+
+		//repaint and validate graphics for window
+		revalidate();
+		repaint();
 	}
 }
+

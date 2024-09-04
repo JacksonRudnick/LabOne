@@ -6,7 +6,7 @@ public class MakingChange {
 		//create frame
 		JFrame frame = new JFrame("Making Change");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 200);
+		frame.setSize(750, 450);
 
 		//create panel
 		RegisterPanel panel = new RegisterPanel();

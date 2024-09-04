@@ -2,9 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputMethodListener;
+
+import static java.lang.System.exit;
 
 public class RegisterPanel extends JPanel {
+	//Basic stuff we need
 	Register register;
 	JPanel inputPanel;
 	JTextField input;
@@ -24,13 +26,13 @@ public class RegisterPanel extends JPanel {
 		input.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				//check for errors with the input box
 				double num = 0.0;
 				try {
 					updatePurse(Double.parseDouble(input.getText()));
 				} catch (Exception err) {
-					pursePanel.displayException(err.toString());
+					System.out.println(err.getMessage());
+					exit(-2);
 				};
 			}
 		});
@@ -38,13 +40,14 @@ public class RegisterPanel extends JPanel {
 		inputPanel.add(input);
 
 		pursePanel.setBackground(Color.BLUE);
-		pursePanel.setPreferredSize(new Dimension(400, 200));
+		pursePanel.setPreferredSize(new Dimension(600, 400));
 
 		//add panels to register panel
 		this.add(inputPanel);
 		this.add(pursePanel);
 	}
 
+	//update purse with our needed changes
 	public void updatePurse(double amt) {
 		pursePanel.setPurse(register.makeChange(amt));
 	}
