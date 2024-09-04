@@ -53,4 +53,25 @@ public class Purse {
 	public Map<Denomination, Integer> getCash() {
 		return cash;
 	}
+
+	public double remove(Denomination d, int num) {
+		int oldAmt = 0;
+		if (cash.get(d) != null) {
+			oldAmt = cash.remove(d);
+		}
+
+		cash.put(d, Math.max(oldAmt - num, 0));
+
+		return oldAmt * d.amt();
+	}
+
+	public double getValue() {
+		double sum = 0;
+
+		for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
+			sum += entry.getValue() * entry.getKey().amt();
+		}
+
+		return sum;
+	}
 }

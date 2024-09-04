@@ -11,6 +11,9 @@ import static java.lang.System.exit;
 public class ChangePanel extends JPanel {
 	//method to display coins and bills
 	public void setPurse(Purse p) {
+		//remove all the labels from the last display
+		this.removeAll();
+
 		//loop through possible denominations
 		for (Map.Entry<Denomination, Integer> entry : p.getCash().entrySet()) {
 			//display image for number of each type of denomination
